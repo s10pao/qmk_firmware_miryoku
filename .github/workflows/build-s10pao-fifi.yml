@@ -1,0 +1,13 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build s10pao fifi miryoku'
+on:
+  - workflow_dispatch
+jobs:
+  build:
+    uses: manna-harbour/miryoku_qmk/.github/workflows/main.yml@miryoku
+    with:
+      keyboard:  '["crkbd"]'
+      clipboard: '["win"]'
+      nav:       '["invertedt"]'
