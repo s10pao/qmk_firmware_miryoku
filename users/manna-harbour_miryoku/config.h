@@ -41,3 +41,8 @@
 
 #include "custom_config.h"
 
+//User configuration
+#define BILATERAL_COMBINATIONS 200
+#undef  TAPPING_TERM
+#define TAPPING_TERM 150
+
