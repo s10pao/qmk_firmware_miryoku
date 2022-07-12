@@ -368,7 +368,7 @@ static void bilateral_combinations_tap(keyevent_t event) {
             unregister_mods(bilateral_combinations.mods);
             tap_code(bilateral_combinations.tap);
         }
-        else if(bilateral_combinations.mods & MOD_MASK_AG) {
+        else if(bilateral_combinations.mods & MOD_MASK_G) {
             send_keyboard_report();
         }
         bilateral_combinations.active = false;
@@ -547,7 +547,7 @@ void process_action(keyrecord_t *record, action_t action) {
                         } else {
                             dprint("MODS_TAP: No tap: add_mods\n");
                             add_mods(mods);
-                            if(mods & MOD_MASK_CS) send_keyboard_report();
+                            if(mods & MOD_MASK_CSA) send_keyboard_report();
 #    ifdef BILATERAL_COMBINATIONS
                             // mod-tap hold
                             bilateral_combinations_hold(action, event);
