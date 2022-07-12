@@ -57,10 +57,10 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        oled_rotation = (swap_hands?OLED_ROTATION_180:OLED_ROTATION_0);
+        //oled_rotation = (swap_hands?OLED_ROTATION_180:OLED_ROTATION_0);
         render_status();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
-        oled_rotation = (swap_hands?OLED_ROTATION_0:OLED_ROTATION_180);
+        //oled_rotation = (swap_hands?OLED_ROTATION_0:OLED_ROTATION_180);
         render_logo();  // Renders a static logo
         oled_scroll_left();  // Turns on scrolling
     }
