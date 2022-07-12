@@ -368,7 +368,7 @@ static void bilateral_combinations_tap(keyevent_t event) {
             unregister_mods(bilateral_combinations.mods);
             tap_code(bilateral_combinations.tap);
         }
-        else if(bilateral_combinations.mods & MOD_MASK_G) {
+        else if(bilateral_combinations.mods & MOD_MASK_GUI) {
             send_keyboard_report();
         }
         bilateral_combinations.active = false;
