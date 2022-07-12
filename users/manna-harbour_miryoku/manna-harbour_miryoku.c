@@ -20,6 +20,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BUTTON] = U_MACRO_VA_ARGS(LAYOUT_miryoku, MIRYOKU_LAYER_BUTTON)
 };
 
+#ifdef OLED_ENABLE
+
+void render_status(void) {
+    // Host Keyboard Layer Status
+    oled_write_P(PSTR("Layer: "), false);
+    switch (get_highest_layer(layer_state)) {
+        case BASE   : oled_write_P(PSTR("BASE  \n"), false); break;
+        case NAV    : oled_write_P(PSTR("NAV   \n"), false); break;
+        case MOUSE  : oled_write_P(PSTR("MOUSE \n"), false); break;
+        case MEDIA  : oled_write_P(PSTR("MEDIA \n"), false); break;
+        case NUM    : oled_write_P(PSTR("NUM   \n"), false); break;
+        case SYM    : oled_write_P(PSTR("SYM   \n"), false); break;
+        case FUN    : oled_write_P(PSTR("FUN   \n"), false); break;
+        case BUTTON : oled_write_P(PSTR("BUTTON\n"), false); break;
+    }
+    // Host Keyboard LED Status
+    led_t led_state = host_keyboard_led_state();
+    oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+    oled_write_P(is_caps_word_on() ? PSTR("CAPS_WORD ") : PSTR("          "), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+}
+
+static void render_logo(void) {
+    oled_write_P(PSTR("\nFREDERICK ADAN"),false);
+    oled_write_P(PSTR("\nAKA DADDY POGI"),false);
+}
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    if (!is_keyboard_master()) {
+        return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+    }
+    return rotation;
+}
+
+bool oled_task_user(void) {
+    if (is_keyboard_master()) {
+        oled_rotation = (swap_hands?OLED_ROTATION_180:OLED_ROTATION_0);
+        render_status();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+    } else {
+        oled_rotation = (swap_hands?OLED_ROTATION_0:OLED_ROTATION_180);
+        render_logo();  // Renders a static logo
+        oled_scroll_left();  // Turns on scrolling
+    }
+
+    return false;
+}
+
+#endif
+
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
 const uint16_t PROGMEM thumbcombos_base_right[] = {LT(SYM, KC_ENT), LT(NUM, KC_BSPC), COMBO_END};
 const uint16_t PROGMEM thumbcombos_base_left[] = {LT(NAV, KC_SPC), LT(MOUSE, KC_TAB), COMBO_END};
