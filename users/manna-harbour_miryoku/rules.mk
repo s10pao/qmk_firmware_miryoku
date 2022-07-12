@@ -8,6 +8,10 @@ AUTO_SHIFT_ENABLE = yes # Auto Shift
 SWAP_HANDS_ENABLE = yes
 CAPS_WORD_ENABLE  = yes
 
+OLED_ENABLE = yes
+OLED_DRIVER = SSD1306
+LTO_ENABLE  = yes
+
 SRC += manna-harbour_miryoku.c # keymaps
 
 include users/manna-harbour_miryoku/custom_rules.mk
