@@ -6,6 +6,7 @@ EXTRAKEY_ENABLE = yes # Audio control and System control
 AUTO_SHIFT_ENABLE = yes # Auto Shift
 
 SWAP_HANDS_ENABLE = yes
+CAPS_WORD_ENABLE  = yes
 
 SRC += manna-harbour_miryoku.c # keymaps
 
