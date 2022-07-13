@@ -44,5 +44,5 @@
 //User configuration
 #define BILATERAL_COMBINATIONS 250
 #undef  TAPPING_TERM
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 #define CAPS_WORD_IDLE_TIMEOUT 0
