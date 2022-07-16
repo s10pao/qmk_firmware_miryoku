@@ -273,13 +273,13 @@ void send_keyboard_report(void) {
 #ifdef PROTOCOL_VUSB
     host_keyboard_send(keyboard_report);
 #else
-    //static report_keyboard_t last_report;
+    static report_keyboard_t last_report;
 
     /* Only send the report if there are changes to propagate to the host. */
-    //if (memcmp(keyboard_report, &last_report, sizeof(report_keyboard_t)) != 0) {
-    //    memcpy(&last_report, keyboard_report, sizeof(report_keyboard_t));
+    if (memcmp(keyboard_report, &last_report, sizeof(report_keyboard_t)) != 0) {
+        memcpy(&last_report, keyboard_report, sizeof(report_keyboard_t));
         host_keyboard_send(keyboard_report);
-    //}
+    }
 #endif
 }
 
