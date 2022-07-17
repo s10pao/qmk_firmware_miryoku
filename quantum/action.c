@@ -335,7 +335,8 @@ static bool bilateral_combinations_left(keypos_t key) {
 }
 static void bilateral_combinations_hold(action_t action, keyevent_t event) {
     dprint("BILATERAL_COMBINATIONS: hold\n");
-    bilateral_combinations.active = true;
+    bilateral_combinations.active   = true;
+    bilateral_combinations.active  &= !(event.key.row%(MATRIX_ROWS/2)==0 && event.key.col==1);
     bilateral_combinations.code = action.key.code;
     bilateral_combinations.tap = action.layer_tap.code;
     bilateral_combinations.mods = (action.kind.id == ACT_LMODS_TAP) ? action.key.mods : action.key.mods << 4;
