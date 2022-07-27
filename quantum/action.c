@@ -371,7 +371,7 @@ static void bilateral_combinations_tap(keyevent_t event) {
         }
         else if(bilateral_combinations.mods & MOD_MASK_AG) {
             send_keyboard_report();
-            wait_ms(10);
+            wait_cpuclock(GPIO_INPUT_PIN_DELAY);
         }
         bilateral_combinations.active = false;
     }
