@@ -371,6 +371,7 @@ static void bilateral_combinations_tap(keyevent_t event) {
         }
         else if(bilateral_combinations.mods & MOD_MASK_AG) {
             send_keyboard_report();
+            wait_ms(5);
         }
         bilateral_combinations.active = false;
     }
