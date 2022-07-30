@@ -270,9 +270,9 @@ bool process_tapping(keyrecord_t *keyp) {
                     }
 
                     if (!IS_NOEVENT(event) && tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2)) {
-                        // tapping_key.event.time -= 50;
-                        // event.time -= 50;
-                        keyp->tap.count = 1;
+                        tapping_key.event.time -= 25;
+                        event.time -= 75;
+                        // keyp->tap.count = 1;
                     }
 
                     // enqueue
