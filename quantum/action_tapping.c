@@ -269,8 +269,8 @@ bool process_tapping(keyrecord_t *keyp) {
 #    endif
                     }
 
-                    if (tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2)) {
-                        //tapping_key.event.time -= 50;
+                    if (!IS_NOEVENT(event) && tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2)) {
+                        tapping_key.event.time -= 50;
                         event.time -= 50;
                     }
 
