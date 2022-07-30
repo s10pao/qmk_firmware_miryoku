@@ -333,6 +333,10 @@ bool process_tapping(keyrecord_t *keyp) {
                 debug("Tapping: End. Timeout. Not tap(0): ");
                 debug_event(event);
                 debug("\n");
+                if (tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2) 
+                    && waiting_buffer_head != waiting_buffer_tail) {
+                        tapping_key.tap.count = 1;
+                }
                 process_record(&tapping_key);
                 tapping_key = (keyrecord_t){};
                 debug_tapping_key();
