@@ -334,7 +334,7 @@ bool process_tapping(keyrecord_t *keyp) {
                 debug_event(event);
                 debug("\n");
                 if (waiting_buffer_tail != waiting_buffer_head 
-                    && tapping_key.event.key.row % (MATRIX_ROWS / 2) != waiting_buffer[waiting_buffer_tail].event.key.row % (MATRIX_ROWS / 2)) {
+                    && tapping_key.event.key.row % (MATRIX_ROWS / 2) == waiting_buffer[waiting_buffer_tail].event.key.row % (MATRIX_ROWS / 2)) {
                         tapping_key.tap.count = 1;
                 }
                 process_record(&tapping_key);
