@@ -164,11 +164,11 @@ bool process_tapping(keyrecord_t *keyp) {
                  * useful for long TAPPING_TERM but may prevent fast typing.
                  */
                 // clang-format off
-#    if defined(TAPPING_TERM_PER_KEY) || (TAPPING_TERM >= 500) || defined(PERMISSIVE_HOLD) || defined(PERMISSIVE_HOLD_PER_KEY) || (defined(AUTO_SHIFT_ENABLE) && defined(RETRO_SHIFT))
+#    if defined(TAPPING_TERM_PER_KEY) || (TAPPING_TERM >= 5000) || defined(PERMISSIVE_HOLD) || defined(PERMISSIVE_HOLD_PER_KEY) || (defined(AUTO_SHIFT_ENABLE) && defined(RETRO_SHIFT))
                 else if (
                     (
                         (
-                            GET_TAPPING_TERM(tapping_keycode, &tapping_key) >= 500
+                            GET_TAPPING_TERM(tapping_keycode, &tapping_key) >= 5000
 #        ifdef PERMISSIVE_HOLD_PER_KEY
                             || get_permissive_hold(tapping_keycode, &tapping_key)
 #        elif defined(PERMISSIVE_HOLD)
