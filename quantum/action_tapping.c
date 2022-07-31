@@ -269,19 +269,19 @@ bool process_tapping(keyrecord_t *keyp) {
 #    endif
                     }
 
-                    if (!IS_NOEVENT(event) && tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2)) {
-                        action_t action = layer_switch_get_action(tapping_key.event.key);
-                        switch (action.kind.id) {
-                            case ACT_LMODS_TAP:
-                            case ACT_RMODS_TAP:
-                                if (action.key.mods == 0x02) {
-                                    tapping_key.event.time -= 25;
-                                    event.time -= 75;
-                                    // keyp->tap.count = 1;
-                                }
-                                break;
-                        }
-                    }
+                    // if (!IS_NOEVENT(event) && tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2)) {
+                    //     action_t action = layer_switch_get_action(tapping_key.event.key);
+                    //     switch (action.kind.id) {
+                    //         case ACT_LMODS_TAP:
+                    //         case ACT_RMODS_TAP:
+                    //             if (action.key.mods == 0x02) {
+                    //                 tapping_key.event.time -= 25;
+                    //                 event.time -= 75;
+                    //                 // keyp->tap.count = 1;
+                    //             }
+                    //             break;
+                    //     }
+                    // }
 
                     // enqueue
                     return false;
