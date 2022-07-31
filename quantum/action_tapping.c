@@ -269,19 +269,19 @@ bool process_tapping(keyrecord_t *keyp) {
 #    endif
                     }
 
-                    // if (!IS_NOEVENT(event) && tapping_key.event.key.row % (MATRIX_ROWS / 2) != event.key.row % (MATRIX_ROWS / 2)) {
-                    //     action_t action = layer_switch_get_action(tapping_key.event.key);
-                    //     switch (action.kind.id) {
-                    //         case ACT_LMODS_TAP:
-                    //         case ACT_RMODS_TAP:
-                    //             if (action.key.mods == 0x02) {
-                    //                 tapping_key.event.time -= 25;
-                    //                 event.time -= 75;
-                    //                 // keyp->tap.count = 1;
-                    //             }
-                    //             break;
-                    //     }
-                    // }
+                    if (!IS_NOEVENT(event) && tapping_key.event.key.row * 2 / MATRIX_ROWS != event.key.row * 2 / MATRIX_ROWS) {
+                        action_t action = layer_switch_get_action(tapping_key.event.key);
+                        switch (action.kind.id) {
+                            case ACT_LMODS_TAP:
+                            case ACT_RMODS_TAP:
+                                if (action.key.mods == 0x02) {
+                                    tapping_key.event.time -= 50;
+                                    event.time -= 75;
+                                    // keyp->tap.count = 1;
+                                }
+                                break;
+                        }
+                    }
 
                     // enqueue
                     return false;
@@ -333,12 +333,12 @@ bool process_tapping(keyrecord_t *keyp) {
                 debug("Tapping: End. Timeout. Not tap(0): ");
                 debug_event(event);
                 debug("\n");
-                if (waiting_buffer_tail != waiting_buffer_head 
-                    && tapping_key.event.key.row * 2 / MATRIX_ROWS == waiting_buffer[waiting_buffer_tail].event.key.row * 2 / MATRIX_ROWS
-                    && (tapping_key.event.key.row+1)%(MATRIX_ROWS/2) != 0
-                ) {
-                    tapping_key.tap.count = 1;
-                }
+                // if (waiting_buffer_tail != waiting_buffer_head 
+                //     && tapping_key.event.key.row * 2 / MATRIX_ROWS == waiting_buffer[waiting_buffer_tail].event.key.row * 2 / MATRIX_ROWS
+                //     && (waiting_buffer[waiting_buffer_tail]u.event.key.row+1)%(MATRIX_ROWS/2) != 0
+                // ) {
+                //     tapping_key.tap.count = 1;
+                // }
                 process_record(&tapping_key);
                 tapping_key = (keyrecord_t){};
                 debug_tapping_key();
