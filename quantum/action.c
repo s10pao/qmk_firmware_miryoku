@@ -370,9 +370,8 @@ static void bilateral_combinations_tap(keyevent_t event) {
             tap_code(bilateral_combinations.tap);
         }
         else if(bilateral_combinations.mods & MOD_MASK_AG) {
-            add_mods(bilateral_combinations.mods);
             send_keyboard_report();
-            // wait_ms(5);
+            wait_ms(5);
         }
         bilateral_combinations.active = false;
     }
