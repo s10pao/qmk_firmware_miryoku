@@ -275,8 +275,8 @@ bool process_tapping(keyrecord_t *keyp) {
                             case ACT_LMODS_TAP:
                             case ACT_RMODS_TAP:
                                 if (action.key.mods == 0x02) {
-                                    tapping_key.event.time -= 25;
-                                    // event.time -= 75;
+                                    // tapping_key.event.time -= 25;
+                                    event.time -= 50;
                                     // keyp->tap.count = 1;
                                 }
                                 break;
