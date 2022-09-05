@@ -339,7 +339,7 @@ static void bilateral_combinations_hold(action_t action, keyevent_t event) {
     bilateral_combinations.active  &= !(event.key.row%(MATRIX_ROWS/2)==0 && event.key.col==1);
     bilateral_combinations.code = action.key.code;
     bilateral_combinations.tap = action.layer_tap.code;
-    bilateral_combinations.mods = (action.kind.id == ACT_LMODS_TAP) ? action.key.mods : action.key.mods << 4;
+    bilateral_combinations.mods|= (action.kind.id == ACT_LMODS_TAP) ? action.key.mods : action.key.mods << 4;
     bilateral_combinations.left = bilateral_combinations_left(event.key);
 #    if (BILATERAL_COMBINATIONS + 0)
     bilateral_combinations.time = event.time;
@@ -349,6 +349,7 @@ static void bilateral_combinations_release(uint8_t code) {
     dprint("BILATERAL_COMBINATIONS: release\n");
     if (bilateral_combinations.active && (code == bilateral_combinations.code)) {
         bilateral_combinations.active = false;
+        bilateral_combinations.mods   = 0;
     }
 }
 static void bilateral_combinations_tap(keyevent_t event) {
